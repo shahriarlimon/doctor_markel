@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Footer from './Components/Shared/Footer/Footer';
+import Header from './Components/Shared/Header/Header';
 
 function App() {
   return (
     <div>
-     <h1>Getting started</h1>
+      <Header/>
+      <Footer/>
     </div>
   );
 }
