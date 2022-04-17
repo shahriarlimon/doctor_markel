@@ -71,13 +71,14 @@ const Register = () => {
       ></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-        <h2 className="text-2xl font-semibold text-center text-gray-700 dark:text-white">
-          Register
-        </h2>
+        
 
         <p className="text-xl text-center text-gray-600 dark:text-gray-200">
           Welcome!
         </p>
+        <h2 className="text-2xl font-semibold text-center text-gray-700 dark:text-white mb-2">
+          Register
+        </h2>
 
         <div>
           <SocialAuth />
@@ -90,7 +91,7 @@ const Register = () => {
             href="/"
             className="text-xs text-center text-gray-500 uppercase dark:text-gray-400 hover:underline"
           >
-            or login with email
+            or Register with email
           </a>
 
           <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>

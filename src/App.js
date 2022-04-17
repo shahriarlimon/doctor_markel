@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import AboutMe from "./Components/Pages/AboutMe/AboutMe";
 import Home from "./Components/Pages/Home/Home";
 import SelectedService from "./Components/Pages/Home/Service/SelectedService/SelectedService";
 import Login from "./Components/Pages/Login/Login";
@@ -24,6 +25,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/about" element= {<AboutMe/>}/>
       </Routes>
       <Footer />
     </div>
