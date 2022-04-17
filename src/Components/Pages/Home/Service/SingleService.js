@@ -16,7 +16,7 @@ const SingleService = ({ service }) => {
         <button onClick={()=>navigate(`/appointment/${id}`)}
           className="mt-3 bg-[#0ea5e9] hover:bg-[#048fcf] inline-flex items-center px-4 py-2 text-white rounded-md font-serif"
         >
-          Get the Appointment
+          Book Now
         </button>
       </div>
     </div>

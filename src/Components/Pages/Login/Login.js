@@ -155,7 +155,7 @@ const Login = () => {
           <div className="mt-8">
             <button
               type="submit"
-              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:bg-gray-600"
             >
               Login
             </button>
@@ -169,7 +169,7 @@ const Login = () => {
             to="/register"
             className="text-sm text-gray-500 uppercase dark:text-gray-400 hover:underline"
           >
-            or Register
+           <span className="text-purple-500"> or Register</span>
           </Link>
 
           <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>

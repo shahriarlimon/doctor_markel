@@ -5,12 +5,19 @@ import {AiFillGithub} from 'react-icons/ai';
 import { auth } from '../../../../firebase.init';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../../Loading/Loading';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SocialAuth = () => {
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, gitHubUser, gitHubLoading, gitHubError] = useSignInWithGithub(auth);
   if(googleLoading || gitHubLoading){
     return <Loading/>
+  }
+  if(googleUser || gitHubUser ){
+    navigate(from, { replace: true });
   }
     return (
         <div>
