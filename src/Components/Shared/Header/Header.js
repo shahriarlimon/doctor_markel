@@ -1,8 +1,12 @@
 import React from "react";
+import { signOut } from 'firebase/auth';
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../../../firebase.init";
 import CustomLink from "../../CustomLink/CustomLink";
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
   return (
     <header className="text-white body-font bg-[#0ea5e9]">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -16,16 +20,18 @@ const Header = () => {
           <CustomLink to="/" className="mr-5 hover:text-gray-900">
             Home
           </CustomLink>
-          <CustomLink to="/" className="mr-5 hover:text-gray-900">
+          <CustomLink to="/appointment" className="mr-5 hover:text-gray-900">
             Appoinments
           </CustomLink>
-          <CustomLink to="/login" className="mr-5 hover:text-gray-900">
+         {user?<button onClick={()=>signOut(auth)} className="mr-5 hover:text-gray-900">
+            Logout
+          </button> :<CustomLink to="/login" className="mr-5 hover:text-gray-900">
             Login
-          </CustomLink>
-          <CustomLink to="/" className="mr-5 hover:text-gray-900">
+          </CustomLink>}
+          <CustomLink to="/blogs" className="mr-5 hover:text-gray-900">
             Blogs
           </CustomLink>
-          <CustomLink to="/" className="mr-5 hover:text-gray-900">
+          <CustomLink to="/about" className="mr-5 hover:text-gray-900">
             About Me
           </CustomLink>
 

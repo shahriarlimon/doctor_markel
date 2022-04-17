@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SingleService = ({ service }) => {
+  const navigate = useNavigate()
   const { id, img, serviceName, description } = service;
   return (
     <div className="p-4 md:w-full flex flex-col text-center items-center border bg-white shadow">
@@ -12,11 +13,11 @@ const SingleService = ({ service }) => {
           {serviceName}
         </h2>
         <p className="leading-relaxed text-base">{description.slice(0, 200)}</p>
-        <Link to={`/appointment/${id}`}
+        <button onClick={()=>navigate(`/appointment/${id}`)}
           className="mt-3 bg-[#0ea5e9] hover:bg-[#048fcf] inline-flex items-center px-4 py-2 text-white rounded-md font-serif"
         >
           Get the Appointment
-        </Link>
+        </button>
       </div>
     </div>
   );
