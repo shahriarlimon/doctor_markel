@@ -2,34 +2,17 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <section className="text-gray-600 body-font">
-      <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-        <img
-          className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
-          alt="hero"
-          src="https://dummyimage.com/720x600"
-        />
-        <div className="text-center lg:w-2/3 w-full" />
-        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-          Microdosing synth tattooed vexillologist
-        </h1>
-        <p className="mb-8 leading-relaxed">
-          Meggings kinfolk echo park stumptown DIY, kale chips beard jianbing
-          tousled. Chambray dreamcatcher trust fund, kitsch vice godard disrupt
-          ramps hexagon mustache umami snackwave tilde chillwave ugh. Pour-over
-          meditation PBR&B pickled ennui celiac mlkshk freegan photo booth af
-          fingerstache pitchfork.
-        </p>
-        <div className="flex justify-center">
-          <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-            Button
-          </button>
-          <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-            Button
-          </button>
-        </div>
+    <div className="hero min-h-screen bg-base-200">
+    <div className="hero-content flex-col lg:flex-row-reverse">
+      <img src="https://api.lorem.space/image/movie?w=260&h=400"  alt = "" className="max-w-sm rounded-lg shadow-2xl" />
+      <div>
+        <h1 className="text-5xl font-bold">Box Office News!</h1>
+        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <button className="btn btn-primary">Get Started</button>
       </div>
-    </section>
+    </div>
+  </div>
+    
   );
 };
 

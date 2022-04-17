@@ -4,10 +4,14 @@ import { BiErrorCircle } from "react-icons/bi";
 import {AiFillGithub} from 'react-icons/ai';
 import { auth } from '../../../../firebase.init';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Loading from '../../../Loading/Loading';
 
 const SocialAuth = () => {
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
   const [signInWithGithub, gitHubUser, gitHubLoading, gitHubError] = useSignInWithGithub(auth);
+  if(googleLoading || gitHubLoading){
+    return <Loading/>
+  }
     return (
         <div>
             <button onClick={()=>signInWithGoogle()}

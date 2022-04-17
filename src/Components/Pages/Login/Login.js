@@ -3,7 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialAuth from "./SocialAuth/SocialAuth";
 import { BiErrorCircle } from "react-icons/bi";
 import { auth } from "../../../firebase.init";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSendPasswordResetEmail,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import Loading from "../../Loading/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -14,6 +20,8 @@ const Login = () => {
   const [errors, setErrors] = useState({ emailError: "", passwordError: "" });
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -45,6 +53,17 @@ const Login = () => {
     e.preventDefault();
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
   };
+  const handlePasswordReset =  () => {
+    if (userInfo.email) {
+      sendPasswordResetEmail(userInfo.email);
+      toast("Reset password email has been sent");
+    } else {
+      alert("Please enter your email");
+    }
+  };
+  if (loading || sending) {
+    return <Loading />;
+  }
   if (user) {
     navigate(from, { replace: true });
   }
@@ -58,8 +77,6 @@ const Login = () => {
       ></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-       
-
         <p className="text-xl text-center text-gray-600 dark:text-gray-200">
           Welcome Back!
         </p>
@@ -113,13 +130,14 @@ const Login = () => {
               >
                 Password
               </label>
-              <a
-                href="/"
-                className="text-xs text-gray-500 dark:text-gray-300 hover:underline"
+              <button
+                onClick={handlePasswordReset}
+                className="text-xs text-gray-500 dark:text-gray-300"
               >
-                Forget Password?
-              </a>
+                Forget Password? <span className="text-blue-600">Reset Now</span>
+              </button>
             </div>
+            <ToastContainer />
 
             <input
               onBlur={handleInputPassword}
