@@ -1,54 +1,52 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialAuth from "./SocialAuth/SocialAuth";
 import { BiErrorCircle } from "react-icons/bi";
 import { auth } from "../../../firebase.init";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Login = () => {
-    const [userInfo, setUserInfo] = useState({
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-      const [errors, setErrors] = useState({ emailError: "", passwordError: "" });
-      const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
-      const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [errors, setErrors] = useState({ emailError: "", passwordError: "" });
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
-      const handleInputEmail = (e) => {
-        const emailRegex = /\S+@\S+\.\S+/;
-        const validEmail = emailRegex.test(e.target.value);
-        if (validEmail) {
-          setUserInfo({ ...userInfo, email: e.target.value });
-          setErrors({ ...errors, emailError: "" });
-        } else {
-          setUserInfo({ ...userInfo, email: "" });
-          setErrors({ ...errors, emailError: "Invalid Email" });
-        }
-      };
-      const handleInputPassword = (e) => {
-        const passwordRegex = /.{6,}/;
-        const validPassword = passwordRegex.test(e.target.value);
-        if (validPassword) {
-          setUserInfo({ ...userInfo, password: e.target.value });
-          setErrors({ ...errors, passwordError: "" });
-        } else {
-          setUserInfo({ ...userInfo, password: "" });
-          setErrors({ ...errors, passwordError: "Minimum 6 characters" });
-        }
-      };
-      
+  const handleInputEmail = (e) => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    const validEmail = emailRegex.test(e.target.value);
+    if (validEmail) {
+      setUserInfo({ ...userInfo, email: e.target.value });
+      setErrors({ ...errors, emailError: "" });
+    } else {
+      setUserInfo({ ...userInfo, email: "" });
+      setErrors({ ...errors, emailError: "Invalid Email" });
+    }
+  };
+  const handleInputPassword = (e) => {
+    const passwordRegex = /.{6,}/;
+    const validPassword = passwordRegex.test(e.target.value);
+    if (validPassword) {
+      setUserInfo({ ...userInfo, password: e.target.value });
+      setErrors({ ...errors, passwordError: "" });
+    } else {
+      setUserInfo({ ...userInfo, password: "" });
+      setErrors({ ...errors, passwordError: "Minimum 6 characters" });
+    }
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(userInfo.email,userInfo.password)
-  };  
-  if(user){
-        navigate('/');
+    signInWithEmailAndPassword(userInfo.email, userInfo.password);
+  };
+  if (user) {
+    navigate(from, { replace: true });
   }
   return (
     <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
