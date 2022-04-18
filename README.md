@@ -1,7 +1,7 @@
 
 ## Live Website Link
 
-  [Drone Zone](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+  [Dr.Marckel](https://doctor-chamber-53e5b.web.app/)
  
  ## Project Details
  - It's a dentists's personal service website
@@ -14,7 +14,7 @@
  - project powered by REACT
  - TAILWIND CSS FRMAWORK
  - REACT ICON
- - TAILWIND DUISY UI
+ - TAILWIND daisyUI
  - FIREBASE FOR AUTHENTICATION AND HOSTING
  - UNSPLASH FOR IMAGES
  - ROUTER FOR ROUTING
