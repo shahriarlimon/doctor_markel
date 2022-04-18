@@ -1,6 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useServices from "../../../../CustomHooks/useServices";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SelectedService = () => {
   const [services] = useServices();
@@ -9,7 +11,9 @@ const SelectedService = () => {
     (service) => service.id == appointmentID
   );
   const handleFormSubmit = e=>{
-    e.preventDefault()
+    e.preventDefault();
+    toast("Your registration successfully completed")
+
   }
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -70,11 +74,11 @@ const SelectedService = () => {
                 type="text"
                 placeholder="Address"
                 className="input input-bordered"
-                required
               />
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">Finalize your Appointment</button>
+              <ToastContainer/>
             </div>
           </form>
         </div>

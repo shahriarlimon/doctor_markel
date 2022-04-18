@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import NotFound from "./Components/NotFound/NotFound";
 import AboutMe from "./Components/Pages/AboutMe/AboutMe";
+import Blogs from "./Components/Pages/Blogs/Blogs";
 import Home from "./Components/Pages/Home/Home";
 import SelectedService from "./Components/Pages/Home/Service/SelectedService/SelectedService";
 import Login from "./Components/Pages/Login/Login";
@@ -26,6 +27,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/blogs" element={<Blogs/>}/>
         <Route path="/about" element= {<AboutMe/>}/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>

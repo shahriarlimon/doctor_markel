@@ -8,8 +8,8 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import Loading from "../../Loading/Loading";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -52,13 +52,14 @@ const Login = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
+  
   };
-  const handlePasswordReset =  () => {
+  const handlePasswordReset = () => {
     if (userInfo.email) {
       sendPasswordResetEmail(userInfo.email);
-      toast("Reset password email has been sent");
+      alert("Reset password email has been sent");
     } else {
-      alert("Please enter your email");
+      toast("Please enter your email");
     }
   };
   if (loading || sending) {
@@ -130,14 +131,13 @@ const Login = () => {
               >
                 Password
               </label>
-              <button
-                onClick={handlePasswordReset}
+              <p 
                 className="text-xs text-gray-500 dark:text-gray-300"
               >
-                Forget Password? <span className="text-blue-600">Reset Now</span>
-              </button>
+                Forget Password?{" "}
+                <button onClick={handlePasswordReset} className="text-blue-600">Reset Now</button>
+              </p>
             </div>
-            <ToastContainer />
 
             <input
               onBlur={handleInputPassword}
@@ -159,6 +159,7 @@ const Login = () => {
             >
               Login
             </button>
+            <ToastContainer/>
           </div>
         </form>
 
@@ -169,7 +170,7 @@ const Login = () => {
             to="/register"
             className="text-sm text-gray-500 uppercase dark:text-gray-400 hover:underline"
           >
-           <span className="text-purple-500"> or Register</span>
+            <span className="text-purple-500"> or Register</span>
           </Link>
 
           <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
