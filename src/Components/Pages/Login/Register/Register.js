@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import SocialAuth from "../SocialAuth/SocialAuth";
 import { BiErrorCircle } from "react-icons/bi";
 import { auth } from "../../../../firebase.init";
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import Loading from "../../../Loading/Loading";
-
 const Register = () => {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -13,13 +12,9 @@ const Register = () => {
     confirmPassword: "",
   });
   const [errors, setErrors] = useState({ emailError: "", passwordError: "" });
-  const [
-    createUserWithEmailAndPassword,
-    createUser,
-    loading,
-    hookError,
-  ] = useCreateUserWithEmailAndPassword(auth);
-  const navigate = useNavigate()
+  const [createUserWithEmailAndPassword, createUser, loading, hookError] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  const navigate = useNavigate();
 
   const handleInputEmail = (e) => {
     const emailRegex = /\S+@\S+\.\S+/;
@@ -59,11 +54,11 @@ const Register = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(userInfo.email, userInfo.password);
   };
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
-  if(createUser){
-      navigate('/')
+  if (createUser) {
+    navigate("/");
   }
   return (
     <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
@@ -75,8 +70,6 @@ const Register = () => {
       ></div>
 
       <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-        
-
         <p className="text-xl text-center text-gray-600 dark:text-gray-200">
           Welcome!
         </p>
@@ -157,7 +150,7 @@ const Register = () => {
           </div>
 
           <div className="mt-8">
-          {hookError && (
+            {hookError && (
               <p className="text-red-500 text-sm flex items-center justify-center mb-2 ">
                 <BiErrorCircle className="mr-1" />{" "}
                 <span>{hookError?.message}</span>
