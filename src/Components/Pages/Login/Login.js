@@ -10,6 +10,7 @@ import {
 import Loading from "../../Loading/Loading";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { async } from "@firebase/util";
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState({
@@ -54,15 +55,15 @@ const Login = () => {
     signInWithEmailAndPassword(userInfo.email, userInfo.password);
   
   };
-  const handlePasswordReset = () => {
+  const handlePasswordReset = async() => {
     if (userInfo.email) {
-      sendPasswordResetEmail(userInfo.email);
-      alert("Reset password email has been sent");
+     await sendPasswordResetEmail(userInfo.email);
+     toast("Reset password email has been sent");
     } else {
       toast("Please enter your email");
     }
   };
-  if (loading || sending) {
+  if (loading || sending ) {
     return <Loading />;
   }
   if (user) {
@@ -110,6 +111,7 @@ const Login = () => {
               Email Address
             </label>
             <input
+              required
               onBlur={handleInputEmail}
               id="LoggingEmailAddress"
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
@@ -124,22 +126,18 @@ const Login = () => {
           </div>
 
           <div className="mt-4">
-            <div className="flex justify-between">
+            <div>
               <label
                 className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
                 for="loggingPassword"
               >
                 Password
               </label>
-              <p 
-                className="text-xs text-gray-500 dark:text-gray-300"
-              >
-                Forget Password?{" "}
-                <button onClick={handlePasswordReset} className="text-blue-600">Reset Now</button>
-              </p>
+             
             </div>
 
             <input
+            required
               onBlur={handleInputPassword}
               id="loggingPassword"
               className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
@@ -159,7 +157,10 @@ const Login = () => {
             >
               Login
             </button>
-            <ToastContainer/>
+          <div>
+          <p className="flex items-center justify-center my-2"> <small className="text-blue-600"><button onClick={handlePasswordReset}>Reset Password</button></small>
+            <ToastContainer/></p>
+          </div>
           </div>
         </form>
 
@@ -170,7 +171,7 @@ const Login = () => {
             to="/register"
             className="text-sm text-gray-500 uppercase dark:text-gray-400 hover:underline"
           >
-            <span className="text-purple-500"> or Register</span>
+            <span className="text-purple-500 font-semibold"> or Register</span>
           </Link>
 
           <span className="w-1/5 border-b dark:border-gray-600 md:w-1/4"></span>
