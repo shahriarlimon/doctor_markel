@@ -3,7 +3,7 @@ import photo from '../../Assets/me.jpg'
 
 const AboutMe = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 ">
     <div className="hero-content flex-col lg:flex-row-reverse">
       <img src={photo}  alt = "" className="max-w-sm rounded-lg shadow-2xl" />
       <div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const Blogs = () => {
   return (
-    <div className="mx-auto">
+    <div className="mx-auto min-h-screen">
       <div className="px-16 py-8 mb-4">
         <h1 className="text-2xl font-semibold mb-2">
           Difference between authorization and authentication

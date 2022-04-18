@@ -70,7 +70,7 @@ const Login = () => {
     navigate(from, { replace: true });
   }
   return (
-    <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
+    <div className="flex max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl min-h-screen">
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
         style={{
